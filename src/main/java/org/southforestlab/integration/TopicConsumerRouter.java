@@ -12,8 +12,9 @@ public class TopicConsumerRouter extends RouteBuilder {
     public void configure() throws Exception {
 
 
-    	from("kafka:{{producer.topic}}?brokers={{kafka.host}}:{{kafka.port}}").routeId("subscriber")
-      	    .log("received from topic - ${body}");
+    	from("kafka:{{consumer.topic}}?brokers={{kafka.host}}:{{kafka.port}}&groupId={{consumer.groupId}}")
+    	   .routeId("subscriber")
+      	   .log("received from topic - ${body}");
 
     }
 
